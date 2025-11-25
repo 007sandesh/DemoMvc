@@ -176,8 +176,8 @@ This project is licensed under the MIT License.
 
 ## 👨‍💻 Author
 
-**Sandesh**  
-[GitHub](https://github.com/YOUR_USERNAME) | [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)
+**Sandesh Kandel**  
+[GitHub](https://github.com/007sandesh) | [LinkedIn](https://www.linkedin.com/in/sandesh-kandel-7b6a04397/)
 
 ---
 
