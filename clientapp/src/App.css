@@ -1,0 +1,359 @@
+/* Modern Reset & Variables (Dark Theme) */
+:root {
+  --primary: #818cf8;
+  /* Lighter Indigo for Dark Mode */
+  --primary-hover: #6366f1;
+  --secondary: #f472b6;
+  /* Lighter Pink */
+  --bg-color: #0f172a;
+  /* Dark Slate Background */
+  --card-bg: #1e293b;
+  /* Dark Card Background */
+  --text-main: #f1f5f9;
+  /* Light Text */
+  --text-muted: #94a3b8;
+  /* Muted Text */
+  --border-color: #334155;
+  /* Dark Border */
+  --input-bg: #020617;
+  /* Very Dark Input */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --radius: 12px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-main);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  justify-content: center;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  margin-bottom: 30px;
+  background: var(--card-bg);
+  padding: 5px;
+  border-radius: 50px;
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  border: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  padding: 10px 25px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+}
+
+.tab-btn.active {
+  background-color: var(--primary);
+  color: #fff;
+  /* Force white text on active button */
+  box-shadow: var(--shadow-md);
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 25px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s ease;
+}
+
+.card h2,
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Forms */
+.form-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+  background: var(--input-bg);
+  color: var(--text-main);
+  /* Clear text in dark mode */
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(129, 140, 248, 0.2);
+}
+
+button.primary-btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+}
+
+button.primary-btn:hover {
+  background-color: var(--primary-hover);
+}
+
+button.enroll-btn {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 14px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+button.enroll-btn:hover {
+  opacity: 0.9;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  display: grid;
+  gap: 15px;
+}
+
+.list-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 25px;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.item-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.item-info strong {
+  display: block;
+  font-size: 1.2rem;
+  color: var(--text-main);
+  margin-bottom: 5px;
+}
+
+.item-sub {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.badge {
+  background: rgba(129, 140, 248, 0.2);
+  /* Transparent Indigo */
+  color: #c7d2fe;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid rgba(129, 140, 248, 0.3);
+}
+
+.enrollment-tag {
+  margin-top: 10px;
+  display: inline-block;
+  background: rgba(244, 114, 182, 0.2);
+  /* Transparent Pink */
+  color: #fbcfe8;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(244, 114, 182, 0.3);
+}
+
+/* Enrollment Section Special */
+.enroll-section {
+  background: linear-gradient(to right, #1e293b, #0f172a);
+  /* Dark Gradient */
+  border: 1px solid var(--primary);
+  /* Highlight border */
+}
+
+.enroll-form {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.enroll-form select {
+  flex: 1;
+  min-width: 250px;
+}
+
+.enroll-form button {
+  flex: 0 0 auto;
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .list-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .badge {
+    margin-top: 10px;
+    align-self: flex-start;
+  }
+
+  .enroll-form {
+    flex-direction: column;
+  }
+
+  .enroll-form button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .tab-btn {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+  }
+}
