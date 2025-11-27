@@ -131,6 +131,34 @@ function App() {
     setSelectedAssignmentId(null);
   };
 
+  const handleAddLesson = (e) => {
+    e.preventDefault();
+    if (!newLesson.file) return alert("Please select a file.");
+    
+    const formData = new FormData();
+    formData.append('title', newLesson.title);
+    formData.append('contentType', newLesson.contentType);
+    formData.append('courseId', selectedCourse.id);
+    formData.append('file', newLesson.file);
+
+    fetch('https://localhost:7015/api/lessons', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: formData
+    }).then(res => {
+      if (res.ok) {
+        fetchLessons(selectedCourse.id);
+        setNewLesson({ title: '', contentType: 'Video', file: null });
+        // Reset file input
+        const fileInput = document.getElementById('lessonFileInput');
+        if (fileInput) fileInput.value = '';
+        alert("Lesson uploaded successfully!");
+      } else {
+        alert("Failed to upload lesson.");
+      }
+    });
+  };
+
   const handleAddAssignment = (e) => {
     e.preventDefault();
     const payload = { ...newAssignment, courseId: selectedCourse.id, dueDate: new Date(newAssignment.dueDate) };
@@ -242,6 +270,41 @@ function App() {
         <div className="fade-in">
           <button onClick={() => setView('courses')} className="secondary-btn">← Back</button>
           <h2>📂 Content: {selectedCourse.title}</h2>
+
+          {/* Teacher/Admin: Upload Lesson */}
+          {(role === 'Admin' || role === 'Teacher') && (
+            <div className="card">
+              <h3>📤 Upload New Content</h3>
+              <form onSubmit={handleAddLesson} className="form-grid">
+                <input 
+                  type="text" 
+                  placeholder="Lesson Title" 
+                  value={newLesson.title} 
+                  onChange={e => setNewLesson({ ...newLesson, title: e.target.value })} 
+                  required 
+                />
+                <select 
+                  value={newLesson.contentType} 
+                  onChange={e => setNewLesson({ ...newLesson, contentType: e.target.value })}
+                  style={{ padding: '10px', borderRadius: '8px', border: '1px solid #ddd' }}
+                >
+                  <option value="Video">Video</option>
+                  <option value="Document">Document</option>
+                  <option value="PDF">PDF</option>
+                  <option value="Image">Image</option>
+                </select>
+                <input 
+                  id="lessonFileInput"
+                  type="file" 
+                  onChange={e => setNewLesson({ ...newLesson, file: e.target.files[0] })} 
+                  required 
+                  style={{ padding: '8px' }}
+                />
+                <button type="submit" className="primary-btn">Upload</button>
+              </form>
+            </div>
+          )}
+
           {role === 'Student' && courseProgress[selectedCourse.id] && (
             <div style={{ background: '#f3f4f6', padding: '15px', borderRadius: '8px', marginBottom: '20px' }}>
               <h4 style={{ margin: '0 0 10px 0' }}>📊 Your Progress</h4>

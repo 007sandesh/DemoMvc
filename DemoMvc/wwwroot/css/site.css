@@ -20,3 +20,52 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* ===== Chatbot (Kiko) Button & Sidebar ===== */
+#kikoChatBtn{
+    position: fixed;
+    right: 20px;
+    bottom: 24px;
+    z-index: 1050;
+    width: 56px;
+    height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+#kikoSidebar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 380px;
+    max-width: 100%;
+    background: #fff;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.08);
+    transform: translateX(110%);
+    transition: transform 300ms ease;
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+}
+#kikoSidebar.open{ transform: translateX(0); }
+
+#kikoSidebar .sidebar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 16px;
+    border-bottom:1px solid #eee;
+}
+#kikoSidebar .sidebar-body{
+    flex:1;
+    overflow:auto;
+    padding: 0;
+}
+
+@media (max-width: 576px){
+    #kikoSidebar{ width: 100%; }
+    #kikoChatBtn{ right: 16px; bottom: 16px; }
+}
